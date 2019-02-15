@@ -3,7 +3,7 @@ import { binding, given } from "cucumber-tsflow"
 
 import {Vtc} from "../../src/domain/vtc"
 import {VtcRepo} from "../../src/domain/interfaces"
-import {expect} from "chai"
+import * as assert from "assert"
 import {Config} from "./config"
 
 @binding([Config])
@@ -14,8 +14,8 @@ class VtcSteps {
     private clients(dataTable: TableDefinition): string | void | Error {
         dataTable.rows().map((r: string[]) => {
             const vtc = new Vtc(r[0], r[1], r[2])
-            this.vtcRepo.Create(vtc)
-            expect(this.vtcRepo.All()).to.deep.include.members([vtc])
+            this.vtcRepo.create(vtc)
+            assert.notStrictEqual(this.vtcRepo.all().indexOf(vtc), -1)
         })
         return
     }

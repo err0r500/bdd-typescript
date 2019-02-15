@@ -3,8 +3,8 @@ export class BookingAttempt {
     private origin: string
     private destination: string
 
-    public Handle(): null {
-        return null
+    public handle(): string{
+        return "ok"
     }
 
 

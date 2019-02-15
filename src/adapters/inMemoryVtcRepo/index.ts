@@ -4,7 +4,7 @@ import {Vtc} from '../../domain/vtc'
 export class InMemoryVtcRepo implements VtcRepo {
     private repo: Vtc[];
 
-    public Create(vtc: Vtc): null {
+    public create(vtc: Vtc): null {
         this.repo.push(vtc)
         return null
     }
@@ -13,7 +13,7 @@ export class InMemoryVtcRepo implements VtcRepo {
         this.repo = []
     }
 
-    public All(): Vtc[] {
+    public all(): Vtc[] {
         return this.repo
     }
 }

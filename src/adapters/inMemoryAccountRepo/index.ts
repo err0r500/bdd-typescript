@@ -5,12 +5,12 @@ import {Customer} from "../../domain/customer"
 export class InMemoryAccountRepo implements AccountRepo {
     private repo: Account[];
 
-    public Create(account: Account): null {
+    public create(account: Account): null {
         this.repo.push(account)
         return null
     }
 
-    public GetAccount(customer: Customer): null | Account {
+    public getAccount(customer: Customer): null | Account {
         const account = this.repo.filter(account => account.id === customer.id)[0]
         if (account == null) {
             return null
@@ -18,7 +18,7 @@ export class InMemoryAccountRepo implements AccountRepo {
         return account
     }
 
-    public IsEmpty(): boolean {
+    public isEmpty(): boolean {
         return this.repo.length === 0
     }
 

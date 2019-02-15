@@ -4,3 +4,5 @@ dist
 reports/node_modules
 reports/cucumber.*
 .DS_Store
+.nyc_output
+coverage

@@ -3,23 +3,23 @@ import {Customer} from "./customer"
 import {Account} from "./account"
 
 export interface CustomerRepo {
-    Create(customer: Customer): null;
-    GetByFirstName(firstName: string): Customer | null;
-    All(): Customer[];
+    create(customer: Customer): null;
+    getByFirstName(firstName: string): Customer | null;
+    all(): Customer[];
 }
 
 export interface VtcRepo {
-    Create(vtc: Vtc): null;
-    All(): Vtc[];
+    create(vtc: Vtc): null;
+    all(): Vtc[];
 }
 
 export interface AuthenticationGateway {
-    Authenticate(customer: Customer): null;
-    GetCurrent(): Customer | null;
+    authenticate(customer: Customer): null;
+    getCurrent(): Customer | null;
 }
 
 export interface AccountRepo {
-    Create(account: Account): null;
-    GetAccount(customer: Customer): null | Account;
-    IsEmpty(): boolean;
+    create(account: Account): null;
+    getAccount(customer: Customer): null | Account;
+    isEmpty(): boolean;
 }

@@ -1,9 +1,9 @@
-import { binding, given } from "cucumber-tsflow"
+import { binding, given, then } from "cucumber-tsflow"
 
-import {AccountRepo, AuthenticationGateway, VtcRepo} from "../../src/domain/interfaces"
+import {AccountRepo, AuthenticationGateway} from "../../src/domain/interfaces"
 import {Config} from './config'
 import {Account} from "../../src/domain/account"
-import {expect} from "chai"
+import * as assert from "assert"
 
 @binding([Config])
 class AccountSteps {
@@ -12,24 +12,29 @@ class AccountSteps {
 
     @given(/^le solde de mon compte est de "([^"]*)" euros TTC avec "([^"]*)" euros TTC d'avoir$/)
     private soldeDeMonCompte(solde: number, avoir: number): null | Error {
-        const currentUser = this.authGateway.GetCurrent()
+        const currentUser = this.authGateway.getCurrent()
         if (currentUser == null) {
             return new Error("user not loggedIn")
         }
 
-        if (this.accountRepo.IsEmpty()){
+        if (this.accountRepo.isEmpty()){
             const account = new Account(currentUser.id, solde, avoir)
-            this.accountRepo.Create(account)
+            this.accountRepo.create(account)
             return null
         }
 
-        const currentAccount = this.accountRepo.GetAccount(currentUser)
+        const currentAccount = this.accountRepo.getAccount(currentUser)
         if (currentAccount == null) {
             return new Error("account not found")
         }
 
-        expect(currentAccount).to.deep.equals(new Account(currentUser.id, solde, avoir))
+        assert.deepStrictEqual(currentAccount, new Account(currentUser.id, solde, avoir))
         return null
+    }
+
+    @then(/^et une alerte pour insuffisance de solde se lève$/)
+    private unAuthenticatedAlert (): string {
+        return "pending"
     }
 
     public constructor(config: Config){
