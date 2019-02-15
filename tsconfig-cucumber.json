@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./features/step_definitions",
+    "strict": true
+  },
+  "include": ["features/step_definitions_ts"],
+  "exclude": ["node_modules", "**/__tests__/*"]
+}

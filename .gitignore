@@ -1,0 +1,6 @@
+node_modules
+dist
+.idea
+reports/node_modules
+reports/cucumber.*
+.DS_Store
